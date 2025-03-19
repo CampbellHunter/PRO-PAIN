@@ -41,8 +41,8 @@ class Menu extends Phaser.Scene {
         } else {
             this.music.setVolume(.2)
         }
-        console.log("Rank: " + game.settings.rank)
-        console.log("Unlock: " + game.settings.unlock)
+        //console.log("Rank: " + game.settings.rank)
+        //console.log("Unlock: " + game.settings.unlock)
 
         if (!this.anims.exists('baddie-hit')) {
             this.anims.create({

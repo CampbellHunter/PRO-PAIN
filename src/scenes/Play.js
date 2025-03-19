@@ -145,7 +145,7 @@ class Play extends Phaser.Scene {
             const { left, right, up, down, space, shift } = this.keys
             this.timeSinceHit += 1
             if (this.timeSinceHit > this.Xframes) {
-                console.log("hey")
+                //console.log("hey")
                 this.hankFSM.step()
                 this.hank.setTint(0xFFFFFF)
             } else {
@@ -228,7 +228,7 @@ class Play extends Phaser.Scene {
             let spawning = true
             while (spawning) {
                 this.spawner = Math.floor(Math.random() * 5)
-                console.log(this.spawner)
+                //console.log(this.spawner)
                 if (!this.spawnList[this.spawner]) {
                     if (this.spawner == 0) {
                         this.baddie1 = new Baddie(this, 1000, 350, 'baddie', 0, this.hank).setScale(0.95)
@@ -261,7 +261,7 @@ class Play extends Phaser.Scene {
                         this.baddie5.depth = 4
                         this.spawnList[4] = true
                     }
-                    console.log(this.spawnList)
+                    //console.log(this.spawnList)
                     spawning = false
                     this.lastspawn = this.moved
                 }
@@ -331,7 +331,7 @@ class Play extends Phaser.Scene {
 
     hurtMe(hank, baddie, key) {
         if (hank.anims.isPlaying && hank.anims.currentAnim.key == 'hank-hit') {
-            console.log("Hit!")
+            //console.log("Hit!")
             baddie.setTint(0xFF0000)
             if (hank.flipX == false) {
                 baddie.x += 5
@@ -348,7 +348,7 @@ class Play extends Phaser.Scene {
                     baddie.destroy()
                     this.numKilled++
                     this.score += 100
-                    console.log(this.numKilled)
+                    //console.log(this.numKilled)
                 
                     let menuConfig = {
                         fontFamily: 'Stencil',
@@ -361,12 +361,12 @@ class Play extends Phaser.Scene {
                         },
                         fixedWidth: 0
                     }
-                    console.log(this.spawnList)
+                    //console.log(this.spawnList)
                     if (this.numKilled >= this.numKills && !this.spawnList[0] && !this.spawnList[1] && !this.spawnList[2] && !this.spawnList[3] && !this.spawnList[4] && game.settings.rank != 2 && this.done == false) {
                         this.done = true
                         this.add.text(game.config.width/2, -20 + game.config.height/2 - borderUISize - borderPadding, 'YOU\'VE UNLOCKED', menuConfig).setOrigin(0.5)
                         menuConfig.fontSize = '72px'
-                        console.log('Rank: ' + game.settings.rank)
+                        //console.log('Rank: ' + game.settings.rank)
                         hank.anims.play("hank-idel")
                         if (game.settings.rank == 0) {
                             if (!this.sound.isPlaying('heat')) {
