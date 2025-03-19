@@ -4,7 +4,10 @@ class Credits extends Phaser.Scene {
     }
 
     create() {
-        this.add.rectangle(0, 0, game.config.width, game.config.height, 0x000000).setOrigin(0, 0)
+        this.backer = this.add.sprite(0, 0, 'backer').setOrigin(0)
+        this.backer.anims.play('scroll')
+        this.faded = this.add.rectangle(0, 0, game.config.width, game.config.height, 0x000000).setOrigin(0, 0)
+        this.faded.alpha = 0.5
         let menuConfig = {
             fontFamily: 'Stencil',
             fontSize: '32px',

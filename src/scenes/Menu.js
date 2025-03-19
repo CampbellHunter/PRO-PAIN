@@ -6,6 +6,7 @@ class Menu extends Phaser.Scene {
     preload() {
         this.load.path = './assets/'
         this.load.image('back', 'back.png')
+        this.load.image('pain', 'pain.png')
         //this.load.image('hank', 'hank.png')
         this.load.audio('song', 'Tell-U-Hwatt.mp3')
         this.load.audio('tell', 'tell.mp3')
@@ -23,6 +24,11 @@ class Menu extends Phaser.Scene {
         this.load.spritesheet('baddie', 'baddie.png', {
             frameWidth: 256,
             frameHeight: 320
+        })
+
+        this.load.spritesheet('backer', 'backer.png', {
+            frameWidth: 768,
+            frameHeight: 512
         })
     }
 
@@ -81,6 +87,13 @@ class Menu extends Phaser.Scene {
                     frames: [8, 9, 10, 10, 11, 8]
                 }),
             })
+            
+            this.anims.create({
+                key: 'scroll',
+                frameRate: 4.5,
+                repeat: -1,
+                frames: this.anims.generateFrameNumbers('backer', { start: 0, end: 4 })
+            })
         }
 
         let menuConfig = {
@@ -95,16 +108,20 @@ class Menu extends Phaser.Scene {
             fixedWidth: 0
         }
 
-        this.add.text(game.config.width/2, 15 + game.config.height/2 - borderUISize - borderPadding, 'PRO-PAIN!', menuConfig).setOrigin(0.5)
-        menuConfig.color = '#ffeedf'
-        menuConfig.fontSize = '32px'
-        this.add.text(game.config.width/2, 25 + game.config.height/2, 'Press "ENTER" to start', menuConfig).setOrigin(0.5)
-        //menuConfig.backgroundColor = '#A0B0D7'
-        
-        //menuConfig.color = '#D9DFEE'
-        this.add.text(game.config.width/2, 20 + game.config.height/2 + borderUISize + borderPadding, 'Press "SPACEBAR" for mode select', menuConfig).setOrigin(0.5)
+        this.backer = this.add.sprite(0, 0, 'backer').setOrigin(0)
+        this.backer.anims.play('scroll')
+        this.pain = this.add.image(0, 0, 'pain').setOrigin(0)
 
-        this.add.text(game.config.width/2, 60 + game.config.height/2 + borderUISize + borderPadding, 'Press "SHIFT" for credits', menuConfig).setOrigin(0.5)
+        //this.add.text(game.config.width/2, 15 + game.config.height/2 - borderUISize - borderPadding, 'PRO-PAIN!', menuConfig).setOrigin(0.5)
+        menuConfig.color = '#ffeedf'
+        menuConfig.fontSize = '27px'
+        this.add.text(game.config.width/2, 95 + game.config.height/2, 'Press "ENTER" to start', menuConfig).setOrigin(0.5)
+        //menuConfig.backgroundColor = '#A0B0D7'
+        menuConfig.fontSize = '24px'
+        //menuConfig.color = '#D9DFEE'
+        this.add.text(game.config.width/2, 80 + game.config.height/2 + borderUISize + borderPadding, 'Press "SPACEBAR" for mode select', menuConfig).setOrigin(0.5)
+        menuConfig.fontSize = '20px'
+        this.add.text(game.config.width/2, 110 + game.config.height/2 + borderUISize + borderPadding, 'Press "SHIFT" for credits', menuConfig).setOrigin(0.5)
 
         keyRESET = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER)
         keyCREDITS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE) 

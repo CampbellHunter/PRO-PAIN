@@ -10,23 +10,31 @@ class Play extends Phaser.Scene {
         this.music.setVolume(.25)
         this.music.play()
         */
-        
+        this.physics.world.drawDebug = false
+        this.keys = this.input.keyboard.createCursorKeys()
+        this.input.keyboard.on('keydown-D', function() {
+            this.physics.world.drawDebug = this.physics.world.drawDebug ? false : true
+            this.physics.world.debugGraphic.clear()
+        }, this)
+
+        document.getElementById('info').innerHTML = 'Use Arrrow Keys to Move | Press "D" for Debug Mode (Toggle)'
+
         this.numKilled = 0
         this.back = this.add.tileSprite(0, 0, 768, 512, 'back').setOrigin(0, 0)
         this.physics.world.setBounds(0, 175, 458, 242)
 
         if (game.settings.rank == 0) {
-            this.numKills = 1
+            this.numKills = 10
             this.spawntime = 1000
             this.Xframes = 200
             this.timeSinceHit = 200
         } else if (game.settings.rank == 1) {
-            this.numKills = 2
+            this.numKills = 15
             this.spawntime = 950
             this.Xframes = 200
             this.timeSinceHit = 200
         } else {
-            this.numKills = 3
+            this.numKills = 1000
             this.spawntime = 800
             this.Xframes = 100
             this.timeSinceHit = 100
@@ -97,7 +105,7 @@ class Play extends Phaser.Scene {
             }
         } else if (this.healthLeft == 0) {
             if (this.faded.alpha < 1) {
-                this.faded.alpha += 0.002
+                this.faded.alpha += 0.0015
             } else {
                 //this.music.pause()
                 game.settings = {
