@@ -17,7 +17,7 @@ class Play extends Phaser.Scene {
             this.physics.world.debugGraphic.clear()
         }, this)
 
-        document.getElementById('info').innerHTML = 'Use Arrrow Keys to Move | Press "D" for Debug Mode (Toggle)'
+        document.getElementById('info').innerHTML = 'Use Arrrow Keys to Move | Press "SPACEBAR" to Attack | Press "D" for Debug Mode'
 
         this.numKilled = 0
         this.back = this.add.tileSprite(0, 0, 768, 512, 'back').setOrigin(0, 0)
