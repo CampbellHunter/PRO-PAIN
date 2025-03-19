@@ -5,7 +5,7 @@
  This game includes an animated opening screen, with a credits and level select menu (which unlokcs as you play).
  Each level increases the difficulty of the game by both increasing the spawn rate and, for the first two, increasing
  the amount of kills needed to proceed. Finally, the last level is effectivly an endless mode, which only ends when
- the player dies.
+ the player dies. This project utalizes the Phaser physics system, sound handler, tween manager, animation manager, and text objects.
  P.S. - Sorry about the lack of a gthub history, my original github save seems to have corrupted and is no longer usable,
  so I had to copy my code over into a fresh Git project. Thanks!
 */
